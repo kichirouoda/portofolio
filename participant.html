@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basis Data Subjek Eksperimen - Dr. Alfa Farah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a87;
+            --accent-color: #4a90b8;
+            --gold-accent: #d4af37;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(74, 144, 184, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 1px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-light);
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin: 2rem 0;
+            overflow: hidden;
+            padding: 3rem 0;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold-accent));
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Experiment Grid */
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experiment-card {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .experiment-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .experiment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(74, 144, 184, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .experiment-card:hover::before {
+            left: 100%;
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .experiment-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .experiment-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .experiment-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .experiment-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .status-upcoming {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+            border: 1px solid var(--warning-color);
+        }
+
+        .status-completed {
+            background: rgba(107, 114, 128, 0.1);
+            color: var(--text-light);
+            border: 1px solid var(--text-light);
+        }
+
+        .experiment-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .experiment-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .detail-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-color);
+        }
+
+        .qr-section {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 2px dashed var(--accent-color);
+            margin-top: 1rem;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .qr-placeholder {
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .qr-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .qr-instruction {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .register-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            margin-top: 1rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .register-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .experiments-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .experiment-details {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for active experiments */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .status-active {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">Dr. Alfa Farah</a>
+             <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="supervision.html">Supervision</a></li>
+                <li><a href="pei.html">PEI</a></li>
+                <li><a href="feedback.html">Stories From Assistants</a></li> 
+                <li><a href="participant.html" class="active">Experiment Participants</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header class="header scroll-reveal">
+        <h1 class="main-title">Basis Data Subjek Eksperimen</h1>
+        <p class="subtitle">
+            Platform pendaftaran untuk partisipasi dalam eksperimen penelitian ekonomi politik dan institusi
+        </p>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section scroll-reveal">
+        <div class="container">
+            <h2 class="section-title" style="color: white; margin-bottom: 2rem;">Statistik Eksperimen</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number counter" data-target="8">0</span>
+                    <span class="stat-label">Total Eksperimen</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number counter" data-target="3">0</span>
+                    <span class="stat-label">Aktif Saat Ini</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number counter" data-target="245">0</span>
+                    <span class="stat-label">Total Partisipan</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number counter" data-target="15">0</span>
+                    <span class="stat-label">Publikasi Hasil</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header scroll-reveal">
+                <h2 class="section-title">Eksperimen Tersedia</h2>
+                <p class="section-description">
+                    Daftar eksperimen penelitian yang sedang berlangsung dan akan datang. 
+                    Scan QR Code untuk mendaftar sebagai subjek eksperimen.
+                </p>
+            </div>
+
+            <!-- Experiments Grid -->
+            <div class="experiments-grid">
+                <!-- Experiment 1 -->
+                <div class="experiment-card scroll-reveal">
+                    <div class="experiment-header">
+                        <div class="experiment-icon">🗳️</div>
+                        <div class="experiment-info">
+                            <h3>Voting Behavior in Democratic Institutions</h3>
+                            <span class="experiment-status status-active">Aktif</span>
+                        </div>
+                    </div>
+                    <p class="experiment-description">
+                        Eksperimen untuk menganalisis perilaku pemilih dalam berbagai sistem pemilu demokratis 
+                        dan pengaruhnya terhadap hasil kebijakan publik.
+                    </p>
+                    <div class="experiment-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>90 menit</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💰</span>
+                            <span>Rp 150.000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>20 partisipan</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span>Setiap Selasa</span>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <div class="qr-code qr-placeholder">
+                            <div style="text-align: center; font-weight: 600;">QR Code<br>Pendaftaran</div>
+                        </div>
+                        <div class="qr-title">Scan untuk Mendaftar</div>
+                        <p class="qr-instruction">
+                            Gunakan kamera smartphone Anda untuk scan QR code dan mengisi formulir pendaftaran
+                        </p>
+                        <a href="#" class="register-button">📝 Daftar Manual</a>
+                    </div>
+                </div>
+
+                <!-- Experiment 2 -->
+                <div class="experiment-card scroll-reveal">
+                    <div class="experiment-header">
+                        <div class="experiment-icon">🏛️</div>
+                        <div class="experiment-info">
+                            <h3>Governance Quality and Public Goods</h3>
+                            <span class="experiment-status status-active">Aktif</span>
+                        </div>
+                    </div>
+                    <p class="experiment-description">
+                        Studi eksperimental tentang bagaimana kualitas tata kelola mempengaruhi penyediaan 
+                        barang publik dan kepuasan masyarakat.
+                    </p>
+                    <div class="experiment-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>120 menit</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💰</span>
+                            <span>Rp 200.000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>24 partisipan</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span>Setiap Kamis</span>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <div class="qr-code qr-placeholder">
+                            <div style="text-align: center; font-weight: 600;">QR Code<br>Pendaftaran</div>
+                        </div>
+                        <div class="qr-title">Scan untuk Mendaftar</div>
+                        <p class="qr-instruction">
+                            Gunakan kamera smartphone Anda untuk scan QR code dan mengisi formulir pendaftaran
+                        </p>
+                        <a href="#" class="register-button">📝 Daftar Manual</a>
+                    </div>
+                </div>
+
+                <!-- Experiment 3 -->
+                <div class="experiment-card scroll-reveal">
+                    <div class="experiment-header">
+                        <div class="experiment-icon">💼</div>
+                        <div class="experiment-info">
+                            <h3>Political Economy of Development</h3>
+                            <span class="experiment-status status-active">Aktif</span>
+                        </div>
+                    </div>
+                    <p class="experiment-description">
+                        Eksperimen untuk memahami hubungan antara faktor politik dan hasil pembangunan ekonomi 
+                        dalam berbagai konteks institusional.
+                    </p>
+                    <div class="experiment-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>105 menit</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💰</span>
+                            <span>Rp 175.000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>18 partisipan</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span>Setiap Jumat</span>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <div class="qr-code qr-placeholder">
+                            <div style="text-align: center; font-weight: 600;">QR Code<br>Pendaftaran</div>
+                        </div>
+                        <div class="qr-title">Scan untuk Mendaftar</div>
+                        <p class="qr-instruction">
+                            Gunakan kamera smartphone Anda untuk scan QR code dan mengisi formulir pendaftaran
+                        </p>
+                        <a href="#" class="register-button">📝 Daftar Manual</a>
+                    </div>
+                </div>
+
+                <!-- Experiment 4 -->
+                <div class="experiment-card scroll-reveal">
+                    <div class="experiment-header">
+                        <div class="experiment-icon">🌐</div>
+                        <div class="experiment-info">
+                            <h3>Decentralization and Local Governance</h3>
+                            <span class="experiment-status status-upcoming">Akan Datang</span>
+                        </div>
+                    </div>
+                    <p class="experiment-description">
+                        Studi tentang efektivitas desentralisasi fiskal dan otonomi pemerintah daerah 
+                        dalam meningkatkan pelayanan publik.
+                    </p>
+                    <div class="experiment-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>135 menit</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💰</span>
+                            <span>Rp 225.000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>30 partisipan</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span>Mulai Februari</span>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <div class="qr-code qr-placeholder">
+                            <div style="text-align: center; font-weight: 600;">QR Code<br>Pendaftaran</div>
+                        </div>
+                        <div class="qr-title">Pre-Registration</div>
+                        <p class="qr-instruction">
+                            Daftar sekarang untuk mendapat notifikasi saat eksperimen dimulai
+                        </p>
+                        <a href="#" class="register-button">📝 Daftar Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Experiment 5 -->
+                <div class="experiment-card scroll-reveal">
+                    <div class="experiment-header">
+                        <div class="experiment-icon">⚖️</div>
+                        <div class="experiment-info">
+                            <h3>Institutional Trust and Cooperation</h3>
+                            <span class="experiment-status status-upcoming">Akan Datang</span>
+                        </div>
+                    </div>
+                    <p class="experiment-description">
+                        Eksperimen untuk menganalisis bagaimana kepercayaan terhadap institusi mempengaruhi 
+                        tingkat kerjasama dan partisipasi masyarakat.
+                    </p>
+                    <div class="experiment-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>90 menit</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💰</span>
+                            <span>Rp 150.000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>16 partisipan</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span>Mulai Maret</span>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <div class="qr-code qr-placeholder">
+                            <div style="text-align: center; font-weight: 600;">QR Code<br>Pendaftaran</div>
+                        </div>
+                        <div class="qr-title">Pre-Registration</div>
+                        <p class="qr-instruction">
+                            Daftar sekarang untuk mendapat notifikasi saat eksperimen dimulai
+                        </p>
+                        <a href="#" class="register-button">📝 Daftar Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Experiment 6 -->
+                <div class="experiment-card scroll-reveal">
+                    <div class="experiment-header">
+                        <div class="experiment-icon">📊</div>
+                        <div class="experiment-info">
+                            <h3>Policy Impact Assessment</h3>
+                            <span class="experiment-status status-completed">Selesai</span>
+                         </div>
+                    </div>
+                    <p class="experiment-description">
+                        Evaluasi eksperimental terhadap dampak berbagai kebijakan publik menggunakan 
+                        metode randomized controlled trial dalam setting laboratorium.
+                    </p>
+                    <div class="experiment-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">⏱️</span>
+                            <span>120 menit</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💰</span>
+                            <span>Rp 200.000</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👥</span>
+                            <span>32 partisipan</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span>Selesai Nov 2024</span>
+                        </div>
+                    </div>
+                    <div class="qr-section">
+                        <div class="qr-code qr-placeholder">
+                            <div style="text-align: center; font-weight: 600; color: #718096;">Eksperimen<br>Selesai</div>
+                        </div>
+                        <div class="qr-title" style="color: #718096;">Hasil Tersedia</div>
+                        <p class="qr-instruction">
+                            Eksperimen telah selesai. Hasil publikasi akan segera tersedia
+                        </p>
+                        <a href="#" class="register-button" style="background: #718096; cursor: not-allowed;">📄 Lihat Hasil</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Section -->
+            <div class="section-header scroll-reveal" style="margin-top: 4rem;">
+                <h2 class="section-title">Informasi Penting</h2>
+                <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: var(--border-radius); margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">📋 Persyaratan Partisipan</h3>
+                        <ul style="color: var(--text-secondary); line-height: 1.8; padding-left: 1.5rem;">
+                            <li>Mahasiswa aktif atau lulusan perguruan tinggi</li>
+                            <li>Berusia 18-35 tahun</li>
+                            <li>Belum pernah mengikuti eksperimen serupa</li>
+                            <li>Mampu menggunakan komputer dan internet</li>
+                            <li>Bersedia mengikuti seluruh sesi eksperimen</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: var(--border-radius); margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">💡 Cara Pendaftaran</h3>
+                        <ol style="color: var(--text-secondary); line-height: 1.8; padding-left: 1.5rem;">
+                            <li>Scan QR Code pada eksperimen yang diminati</li>
+                            <li>Isi formulir pendaftaran online</li>
+                            <li>Tunggu konfirmasi via email/WhatsApp</li>
+                            <li>Datang sesuai jadwal yang telah ditentukan</li>
+                            <li>Ikuti briefing dan instruksi eksperimen</li>
+                        </ol>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(74, 144, 184, 0.1), rgba(212, 175, 55, 0.1)); padding: 2rem; border-radius: var(--border-radius); border-left: 4px solid var(--accent-color);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem;">⚠️ Catatan Penting</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                            Semua eksperimen dilakukan dengan standar etika penelitian yang ketat. Data partisipan 
+                            dijamin kerahasiaannya dan hanya digunakan untuk kepentingan penelitian akademis.
+                        </p>
+                        <p style="color: var(--text-secondary); line-height: 1.8;">
+                            <strong>Kontak:</strong> Untuk pertanyaan lebih lanjut, hubungi Tim Eksperimen di 
+                            <a href="mailto:experiment@university.edu" style="color: var(--accent-color);">experiment@university.edu</a> 
+                            atau WhatsApp: <a href="https://wa.me/6281234567890" style="color: var(--accent-color);">+62 812-3456-7890</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation Function
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Initialize counters when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        animateCounter(counter, target, 2000);
+                    });
+                    
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px'
+        });
+
+        // Observe the stats section
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Experiment card interactions
+        document.querySelectorAll('.experiment-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, var(--bg-secondary), rgba(74, 144, 184, 0.05))';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'var(--bg-secondary)';
+            });
+        });
+
+        // QR Code click simulation (for demo purposes)
+        document.querySelectorAll('.qr-code').forEach(qr => {
+            qr.addEventListener('click', function() {
+                if (!this.classList.contains('clicked')) {
+                    this.style.background = 'linear-gradient(45deg, var(--accent-color), var(--gold-accent))';
+                    this.innerHTML = '<div style="color: white; font-weight: 600; text-align: center;">QR Scanned!<br>✓</div>';
+                    this.classList.add('clicked');
+                    
+                    setTimeout(() => {
+                        this.style.background = '';
+                        this.innerHTML = '<div style="text-align: center; font-weight: 600;">QR Code<br>Pendaftaran</div>';
+                        this.classList.remove('clicked');
+                    }, 2000);
+                }
+            });
+        });
+
+        // Register button effects
+        document.querySelectorAll('.register-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.style.background.includes('#718096')) {
+                    return; // Disabled button
+                }
+                
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+                
+                // Simulate registration process
+                const originalText = this.textContent;
+                this.textContent = '⏳ Memproses...';
+                this.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    this.textContent = '✅ Berhasil!';
+                    this.style.background = 'var(--success-color)';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.background = '';
+                        this.style.pointerEvents = '';
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+        // Add ripple animation CSS
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+
+        // Staggered animation for experiment cards
+        const experimentCards = document.querySelectorAll('.experiment-card');
+        experimentCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        console.log('🧪 Basis Data Subjek Eksperimen page loaded successfully!');
+    </script>
+</body>
+</html>

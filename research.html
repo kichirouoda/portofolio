@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Dr. Alfa Farah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a87;
+            --accent-color: #4a90b8;
+            --gold-accent: #d4af37;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(74, 144, 184, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(74, 144, 184, 0.15);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 1px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 60px 0;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Research Overview */
+        .research-overview {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .overview-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .overview-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-accent), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .overview-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* Research Areas Grid */
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .research-area {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .research-area:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .area-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .area-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .area-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .area-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .keyword-tag {
+            background: rgba(74, 144, 184, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Current Projects */
+        .current-projects {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            text-shadow: 
+                -2px -2px 0 black,
+                 2px -2px 0 black,
+                -2px  2px 0 black,
+                 2px  2px 0 black,
+                 0px  2px 0 black,
+                 2px  0px 0 black,
+                -2px  0px 0 black,
+                 0px -2px 0 black; /* stroke lebih tebal */
+            margin-bottom: 15px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: white;
+            text-shadow: 
+                -1.5px -1.5px 0 black,
+                 1.5px -1.5px 0 black,
+                -1.5px  1.5px 0 black,
+                 1.5px  1.5px 0 black,
+                 0px  1.5px 0 black,
+                 1.5px  0px 0 black,
+                -1.5px  0px 0 black,
+                 0px -1.5px 0 black;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .project-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold-accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-status.ongoing {
+            background: #10b981;
+        }
+
+        .project-status.completed {
+            background: var(--accent-color);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-right: 80px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .project-funding {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-accent);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-collaborators {
+            margin-top: 15px;
+        }
+
+        .collaborators-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .collaborators-list {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Methodology Section */
+        .methodology-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .method-item {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .method-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-light);
+        }
+
+        .method-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .method-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Data Sources */
+        .data-sources {
+            margin-bottom: 60px;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .data-source {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .data-source:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .data-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            margin: 0 auto 15px;
+        }
+
+        .data-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .data-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .research-areas {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .methodology-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .data-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .page-header,
+            .research-overview,
+            .methodology-section {
+                padding: 30px 20px;
+            }
+
+            .project-card,
+            .research-area {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .fade-in-delay {
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">Dr. Alfa Farah</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="supervision.html">Supervision</a></li>
+                <li><a href="pei.html">PEI</a></li>
+                <li><a href="feedback.html">Stories From Assistants</a></li> 
+                <li><a href="participant.html">Peserta Eksperimen</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header fade-in">
+                <h1 class="page-title">Research</h1>
+                <p class="page-subtitle">
+                    Exploring the intersection of political economy, decentralization, and economic development 
+                    through rigorous empirical analysis and innovative methodological approaches.
+                </p>
+            </div>
+
+            <!-- Research Overview -->
+            <div class="research-overview scroll-reveal">
+                <h2 class="overview-title">Research Philosophy</h2>
+                <p class="overview-text">
+                    My research program centers on understanding how political institutions and governance structures 
+                    influence economic outcomes, particularly in developing countries. I employ a multidisciplinary 
+                    approach that combines economic theory, political science insights, and advanced econometric 
+                    methods to address fundamental questions about decentralization, institutional quality, and 
+                    regional development.
+                </p>
+                <p class="overview-text">
+                    Through both theoretical modeling and empirical analysis, I seek to provide evidence-based 
+                    insights that can inform policy decisions and contribute to our understanding of how to design 
+                    institutions that promote sustainable economic growth and improved welfare outcomes.
+                </p>
+            </div>
+
+            <!-- Research Areas -->
+            <div class="research-areas scroll-reveal">
+                <div class="research-area">
+                    <div class="area-icon">🏛️</div>
+                    <h3 class="area-title">Political Economy of Decentralization</h3>
+                    <p class="area-description">
+                        Investigating how the transfer of political and fiscal authority from central to local 
+                        governments affects economic performance, public service delivery, and democratic governance.
+                    </p>
+                    <div class="area-keywords">
+                        <span class="keyword-tag">Fiscal Federalism</span>
+                        <span class="keyword-tag">Local Elections</span>
+                        <span class="keyword-tag">Governance Quality</span>
+                        <span class="keyword-tag">Public Finance</span>
+                    </div>
+                </div>
+
+                <div class="research-area">
+                    <div class="area-icon">📊</div>
+                    <h3 class="area-title">Institutional Economics</h3>
+                    <p class="area-description">
+                        Examining the role of formal and informal institutions in shaping economic behavior, 
+                        with particular focus on how institutional quality affects investment, innovation, and growth.
+                    </p>
+                    <div class="area-keywords">
+                        <span class="keyword-tag">Rule of Law</span>
+                        <span class="keyword-tag">Property Rights</span>
+                        <span class="keyword-tag">Corruption</span>
+                        <span class="keyword-tag">Institutional Change</span>
+                    </div>
+                </div>
+
+                <div class="research-area">
+                    <div class="area-icon">🌏</div>
+                    <h3 class="area-title">Regional Development</h3>
+                    <p class="area-description">
+                        Analyzing spatial patterns of economic development and the factors that contribute to 
+                        regional disparities, including infrastructure, human capital, and policy interventions.
+                    </p>
+                    <div class="area-keywords">
+                        <span class="keyword-tag">Spatial Economics</span>
+                        <span class="keyword-tag">Regional Convergence</span>
+                        <span class="keyword-tag">Infrastructure</span>
+                        <span class="keyword-tag">Economic Geography</span>
+                    </div>
+                </div>
+
+                <div class="research-area">
+                    <div class="area-icon">📈</div>
+                    <h3 class="area-title">Applied Econometrics</h3>
+                    <p class="area-description">
+                        Developing and applying advanced econometric techniques to identify causal relationships 
+                        in observational data, with emphasis on natural experiments and quasi-experimental methods.
+                    </p>
+                    <div class="area-keywords">
+                        <span class="keyword-tag">Causal Inference</span>
+                        <span class="keyword-tag">Panel Data</span>
+                        <span class="keyword-tag">Instrumental Variables</span>
+                        <span class="keyword-tag">Difference-in-Differences</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Projects -->
+            <section class="current-projects scroll-reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Current Research Projects</h2>
+                    <p class="section-description">
+                        Ongoing research initiatives that are advancing our understanding of political economy 
+                        and development economics through innovative approaches and rigorous analysis.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-status ongoing">Ongoing</div>
+                        <h3 class="project-title">Electoral Competition and Local Government Performance in Indonesia</h3>
+                        <div class="project-meta">
+                            <span class="project-duration">2023 - 2025</span>
+                            <span class="project-funding">DAAD Funded</span>
+                        </div>
+                        <p class="project-description">
+                            This project examines how electoral competition at the local level affects the quality 
+                            of governance and public service delivery. Using a novel dataset of Indonesian local 
+                            elections and administrative outcomes, we employ regression discontinuity and 
+                            difference-in-differences approaches to identify causal effects.
+                        </p>
+                        <div class="project-collaborators">
+                            <div class="collaborators-title">Collaborators:</div>
+                            <div class="collaborators-list">Prof. Dr. [Name], University of Muenster; Dr. [Name], World Bank</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-status ongoing">Ongoing</div>
+                        <h3 class="project-title">Fiscal Decentralization and Regional Economic Growth</h3>
+                        <div class="project-meta">
+                            <span class="project-duration">2022 - 2024</span>
+                            <span class="project-funding">University Grant</span>
+                        </div>
+                        <p class="project-description">
+                            A comprehensive analysis of how different forms of fiscal decentralization affect 
+                            regional economic growth patterns across Indonesian provinces. The study combines 
+                            theoretical modeling with empirical analysis using 20 years of provincial-level data.
+                        </p>
+                        <div class="project-collaborators">
+                            <div class="collaborators-title">Collaborators:</div>
+                            <div class="collaborators-list">Dr. [Name], Diponegoro University; Prof. [Name], ANU</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-status completed">Completed</div>
+                        <h3 class="project-title">Institutional Quality and Foreign Direct Investment</h3>
+                        <div class="project-meta">
+                            <span class="project-duration">2021 - 2023</span>
+                            <span class="project-funding">Research Grant</span>
+                        </div>
+                        <p class="project-description">
+                            An empirical investigation of how institutional quality indicators affect foreign 
+                            direct investment flows to developing countries, with special attention to the role 
+                            of regulatory quality and corruption control measures.
+                        </p>
+                        <div class="project-collaborators">
+                            <div class="collaborators-title">Collaborators:</div>
+                            <div class="collaborators-list">International research consortium</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-status ongoing">Ongoing</div>
+                        <h3 class="project-title">Digital Infrastructure and Economic Development</h3>
+                        <div class="project-meta">
+                            <span class="project-duration">2024 - 2026</span>
+                            <span class="project-funding">Ministry Grant</span>
+                        </div>
+                        <p class="project-description">
+                            Examining the impact of digital infrastructure investments on local economic development 
+                            outcomes, including employment, firm productivity, and income distribution. The project 
+                            uses satellite data and administrative records to track infrastructure rollout.
+                        </p>
+                        <div class="project-collaborators">
+                            <div class="collaborators-title">Collaborators:</div>
+                            <div class="collaborators-list">Ministry of Communication, Statistics Indonesia</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Methodology -->
+            <section class="methodology-section scroll-reveal">
+                <h2 class="overview-title">Research Methodology</h2>
+                <p class="overview-text">
+                    My research employs a diverse set of methodological approaches, combining theoretical rigor 
+                    with empirical innovation to address complex questions in political economy and development.
+                </p>
+                
+                <div class="methodology-grid">
+                    <div class="method-item">
+                        <h4 class="method-title">Causal Identification</h4>
+                        <p class="method-description">
+                            Utilizing natural experiments, instrumental variables, regression discontinuity, 
+                            and difference-in-differences designs to establish causal relationships in 
+                            observational data.
+                        </p>
+                    </div>
+
+                    <div class="method-item">
+                        <h4 class="method-title">Panel Data Analysis</h4>
+                        <p class="method-description">
+                            Leveraging longitudinal data structures to control for unobserved heterogeneity 
+                            and track dynamic processes over time using fixed effects and random effects models.
+                        </p>
+                    </div>
+
+                    <div class="method-item">
+                        <h4 class="method-title">Spatial Econometrics</h4>
+                        <p class="method-description">
+                            Incorporating spatial dependencies and spillover effects in economic analysis 
+                            through spatial lag, spatial error, and spatial Durbin models.
+                        </p>
+                    </div>
+
+                    <div class="method-item">
+                        <h4 class="method-title">Machine Learning</h4>
+                        <p class="method-description">
+                            Applying machine learning techniques for prediction, classification, and 
+                            pattern recognition in large datasets, including ensemble methods and 
+                            deep learning approaches.
+                        </p>
+                    </div>
+
+                    <div class="method-item">
+                        <h4 class="method-title">Field Experiments</h4>
+                        <p class="method-description">
+                            Designing and implementing randomized controlled trials to test theoretical 
+                            predictions and evaluate policy interventions in real-world settings.
+                        </p>
+                    </div>
+
+                    <div class="method-item">
+                        <h4 class="method-title">Mixed Methods</h4>
+                        <p class="method-description">
+                            Combining quantitative analysis with qualitative insights through surveys, 
+                            interviews, and case studies to provide comprehensive understanding of 
+                            complex phenomena.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Sources -->
+            <section class="data-sources scroll-reveal">
+                <div class="section-header">
+                    <h2 class="section-title">Data Sources & Partnerships</h2>
+                    <p class="section-description">
+                        Leveraging diverse data sources and institutional partnerships to conduct 
+                        comprehensive and policy-relevant research.
+                    </p>
+                </div>
+
+                <div class="data-grid">
+                      <div class="data-source">
+                          <div class="data-icon">🏛️</div>
+                          <h4 class="data-title">Government Administrative Data</h4>
+                          <p class="data-description">
+                              Ministry databases, local government records, election data, and public finance statistics 
+                              from Indonesian government agencies.
+                          </p>
+                      </div>
+
+                      <div class="data-source">
+                          <div class="data-icon">📊</div>
+                          <h4 class="data-title">Statistics Indonesia (BPS)</h4>
+                          <p class="data-description">
+                              National socioeconomic surveys, census data, regional accounts, and labor force 
+                              statistics from the national statistical office.
+                          </p>
+                      </div>
+
+                      <div class="data-source">
+                          <div class="data-icon">🌍</div>
+                          <h4 class="data-title">World Bank & IMF</h4>
+                          <p class="data-description">
+                              International development indicators, governance metrics, and macroeconomic data 
+                              from multilateral organizations.
+                          </p>
+                      </div>
+
+                      <div class="data-source">
+                          <div class="data-icon">🛰️</div>
+                          <h4 class="data-title">Satellite & GIS Data</h4>
+                          <p class="data-description">
+                              Remote sensing data for infrastructure mapping, land use analysis, and 
+                              environmental monitoring from various satellite platforms.
+                          </p>
+                      </div>
+
+                      <div class="data-source">
+                          <div class="data-icon">🏢</div>
+                          <h4 class="data-title">Firm-Level Surveys</h4>
+                          <p class="data-description">
+                              Enterprise surveys, manufacturing censuses, and business registration data 
+                              for microeconomic analysis and productivity studies.
+                          </p>
+                      </div>
+
+                      <div class="data-source">
+                          <div class="data-icon">👥</div>
+                          <h4 class="data-title">Primary Data Collection</h4>
+                          <p class="data-description">
+                              Custom surveys, interviews, and field experiments designed specifically 
+                              for research projects and policy evaluation studies.
+                          </p>
+                      </div>
+                  </div>
+              </section>
+
+              <!-- Research Impact -->
+              <section class="research-overview scroll-reveal">
+                  <h2 class="overview-title">Research Impact & Policy Relevance</h2>
+                  <p class="overview-text">
+                      My research aims to bridge the gap between academic scholarship and practical policy 
+                      applications. Through collaboration with government agencies, international organizations, 
+                      and civil society groups, I strive to ensure that research findings contribute to 
+                      evidence-based policymaking and improved development outcomes.
+                  </p>
+                  <p class="overview-text">
+                      Key policy areas where my research has provided insights include: fiscal decentralization 
+                      reforms, local government capacity building, electoral system design, and regional 
+                      development strategies. I regularly present findings to policymakers and participate 
+                      in policy advisory committees to maximize the real-world impact of academic research.
+                  </p>
+              </section>
+
+              <!-- Upcoming Research -->
+              <section class="current-projects scroll-reveal">
+                  <div class="section-header">
+                      <h2 class="section-title">Future Research Directions</h2>
+                      <p class="section-description">
+                          Planned research initiatives that will expand our understanding of contemporary 
+                          challenges in political economy and development.
+                      </p>
+                  </div>
+
+                  <div class="projects-grid">
+                      <div class="project-card">
+                          <div class="project-status" style="background: #6366f1;">Planned</div>
+                          <h3 class="project-title">Climate Change and Local Government Adaptation</h3>
+                          <div class="project-meta">
+                              <span class="project-duration">2025 - 2027</span>
+                              <span class="project-funding">Climate Fund</span>
+                          </div>
+                          <p class="project-description">
+                              Investigating how local governments adapt their policies and investments in 
+                              response to climate change risks, and how institutional capacity affects 
+                              adaptation effectiveness.
+                          </p>
+                          <div class="project-collaborators">
+                              <div class="collaborators-title">Potential Collaborators:</div>
+                              <div class="collaborators-list">Climate research institutes, Environmental agencies</div>
+                          </div>
+                      </div>
+
+                      <div class="project-card">
+                          <div class="project-status" style="background: #6366f1;">Planned</div>
+                          <h3 class="project-title">Digital Governance and Citizen Engagement</h3>
+                          <div class="project-meta">
+                              <span class="project-duration">2025 - 2026</span>
+                              <span class="project-funding">Tech Partnership</span>
+                          </div>
+                          <p class="project-description">
+                              Examining how digital platforms and e-governance initiatives affect citizen 
+                              participation in local politics and the quality of democratic governance.
+                          </p>
+                          <div class="project-collaborators">
+                              <div class="collaborators-title">Potential Collaborators:</div>
+                              <div class="collaborators-list">Tech companies, Digital governance experts</div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          </main>
+      </div>
+
+      <script>
+          // Smooth scrolling for navigation links
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+              anchor.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  const target = document.querySelector(this.getAttribute('href'));
+                  if (target) {
+                      target.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start'
+                      });
+                  }
+              });
+          });
+
+          // Navbar scroll effect
+          window.addEventListener('scroll', () => {
+              const navbar = document.querySelector('.navbar');
+              if (window.scrollY > 50) {
+                  navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                  navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+              } else {
+                  navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                  navbar.style.boxShadow = 'none';
+              }
+          });
+
+          // Scroll reveal animation
+          const observerOptions = {
+              threshold: 0.1,
+              rootMargin: '0px 0px -50px 0px'
+          };
+
+          const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      entry.target.classList.add('revealed');
+                  }
+              });
+          }, observerOptions);
+
+          // Observe all scroll-reveal elements
+          document.querySelectorAll('.scroll-reveal').forEach(el => {
+              observer.observe(el);
+          });
+
+          // Staggered animation for research areas
+          const researchAreas = document.querySelectorAll('.research-area');
+          researchAreas.forEach((area, index) => {
+              area.style.animationDelay = `${index * 0.1}s`;
+              area.classList.add('fade-in-delay');
+          });
+
+          // Staggered animation for project cards
+          const projectCards = document.querySelectorAll('.project-card');
+          projectCards.forEach((card, index) => {
+              card.style.animationDelay = `${index * 0.15}s`;
+              card.classList.add('fade-in-delay');
+          });
+
+          // Staggered animation for data sources
+          const dataSources = document.querySelectorAll('.data-source');
+          dataSources.forEach((source, index) => {
+              source.style.animationDelay = `${index * 0.1}s`;
+              source.classList.add('fade-in-delay');
+          });
+
+          // Add hover effects for interactive elements
+          document.querySelectorAll('.research-area, .project-card, .data-source').forEach(card => {
+              card.addEventListener('mouseenter', function() {
+                  this.style.transform = 'translateY(-5px)';
+              });
+              
+              card.addEventListener('mouseleave', function() {
+                  this.style.transform = 'translateY(0)';
+              });
+          });
+
+          // Initialize page
+          document.addEventListener('DOMContentLoaded', function() {
+              // Add loading animation
+              document.body.style.opacity = '0';
+              document.body.style.transition = 'opacity 0.5s ease';
+              
+              setTimeout(() => {
+                  document.body.style.opacity = '1';
+              }, 100);
+
+              // Trigger initial animations
+              setTimeout(() => {
+                  document.querySelectorAll('.fade-in-delay').forEach((el, index) => {
+                      setTimeout(() => {
+                          el.style.opacity = '1';
+                          el.style.transform = 'translateY(0)';
+                      }, index * 100);
+                  });
+              }, 500);
+          });
+
+          // Add parallax effect to background
+          window.addEventListener('scroll', () => {
+              const scrolled = window.pageYOffset;
+              const parallax = document.querySelector('.background-pattern');
+              const speed = scrolled * 0.2;
+              parallax.style.transform = `translateY(${speed}px)`;
+          });
+
+          // Add dynamic counter animation for research metrics (if needed)
+          function animateCounter(element, target, duration = 2000) {
+              let start = 0;
+              const increment = target / (duration / 16);
+              
+              const timer = setInterval(() => {
+                  start += increment;
+                  element.textContent = Math.floor(start);
+                  
+                  if (start >= target) {
+                      element.textContent = target;
+                      clearInterval(timer);
+                  }
+              }, 16);
+          }
+
+          // Keyboard navigation support
+          document.addEventListener('keydown', function(e) {
+              // Add keyboard shortcuts if needed
+              if (e.key === 'Escape') {
+                  // Close any open modals or overlays
+                  document.querySelectorAll('.modal, .overlay').forEach(el => {
+                      el.style.display = 'none';
+                  });
+              }
+          });
+
+          // Add accessibility improvements
+          document.querySelectorAll('.research-area, .project-card').forEach(card => {
+              card.setAttribute('tabindex', '0');
+              card.setAttribute('role', 'article');
+              
+              card.addEventListener('keydown', function(e) {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      // Add click behavior if needed
+                  }
+              });
+          });
+
+          // Performance optimization - lazy load heavy content
+          const lazyElements = document.querySelectorAll('[data-lazy]');
+          const lazyObserver = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      const element = entry.target;
+                      // Load heavy content when in viewport
+                      lazyObserver.unobserve(element);
+                  }
+              });
+          });
+
+          lazyElements.forEach(el => lazyObserver.observe(el));
+      </script>
+  </body>
+</html>
+                        

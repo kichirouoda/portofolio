@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories from Assistants - Dr. Alfa Farah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a87;
+            --accent-color: #4a90b8;
+            --gold-accent: #d4af37;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(74, 144, 184, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 1px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin: 2rem 0;
+            overflow: hidden;
+            padding: 3rem 0;
+        }
+
+        /* Story Card Styles */
+        .story-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 4rem 0;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .story-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-card.reverse {
+            direction: rtl;
+        }
+
+        .story-card.reverse > * {
+            direction: ltr;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+        }
+
+        .story-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .story-author {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .story-role {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .story-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 4rem;
+            color: var(--gold-accent);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .story-text::after {
+            content: '"';
+            position: absolute;
+            right: 0;
+            bottom: -20px;
+            font-size: 4rem;
+            color: var(--gold-accent);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        /* Special styling for alternating stories */
+        .story-card:nth-child(even) {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            margin: 4rem 2rem;
+        }
+
+        .story-card:nth-child(odd) .story-content {
+            background: linear-gradient(135deg, rgba(74, 144, 184, 0.05), rgba(212, 175, 55, 0.05));
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .story-card:nth-child(even) .story-content {
+            border-right: 4px solid var(--gold-accent);
+        }
+
+        /* Decorative elements */
+        .story-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--accent-color), var(--gold-accent));
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .story-decoration.top-left {
+            top: -50px;
+            left: -50px;
+        }
+
+        .story-decoration.bottom-right {
+            bottom: -50px;
+            right: -50px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold-accent));
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .story-card,
+            .story-card.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                direction: ltr;
+            }
+
+            .story-content {
+                padding: 1.5rem;
+            }
+
+            .story-image img {
+                height: 300px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .story-card:nth-child(even) {
+                margin: 4rem 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating elements animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">Dr. Alfa Farah</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="supervision.html">Supervision</a></li>
+                <li><a href="pei.html">PEI</a></li>
+                <li><a href="feedback.html"  class="active">Stories From Assistants</a></li> 
+                <li><a href="participant.html">Experiment Participants</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header class="header scroll-reveal">
+        <h1 class="main-title">Stories from Research Assistants</h1>
+        <p class="subtitle">
+            Heartfelt testimonials and memorable experiences shared by our dedicated research team members
+        </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header scroll-reveal">
+                <h2 class="section-title">Voices of Our Team</h2>
+                <p class="section-description">
+                    Discover the inspiring journeys, valuable lessons, and meaningful connections 
+                    formed through our research collaboration
+                </p>
+            </div>
+
+            <!-- Story 1 -->
+            <div class="story-card scroll-reveal">
+                <div class="story-image floating">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616c4f5b1c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Faustina Cahya Kamila">
+                    <div class="story-decoration top-left"></div>
+                </div>
+                <div class="story-content">
+                    <h3 class="story-author">Faustina Cahya Kamila</h3>
+                    <p class="story-role">Research Assistant</p>
+                    <p class="story-text">
+                        Bergabung dengan tim penelitian Dr. Alfa Farah telah mengubah perspektif saya tentang ekonomi politik. 
+                        Setiap diskusi membuka wawasan baru tentang bagaimana institusi mempengaruhi kehidupan masyarakat. 
+                        Pengalaman ini tidak hanya memperkaya pengetahuan akademis, tetapi juga mengajarkan saya pentingnya 
+                        rigor dalam penelitian dan dampak nyata dari kerja ilmiah terhadap kebijakan publik.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Story 2 -->
+            <div class="story-card reverse scroll-reveal">
+                <div class="story-image floating">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Gabriel Valerion Lengkong">
+                    <div class="story-decoration bottom-right"></div>
+                </div>
+                <div class="story-content">
+                    <h3 class="story-author">Gabriel Valerion Lengkong</h3>
+                    <p class="story-role">Research Assistant</p>
+                    <p class="story-text">
+                        Menjadi bagian dari PEI Research Group adalah privilege yang luar biasa. Dr. Alfa Farah tidak hanya 
+                        mentor akademis, tetapi juga inspirasi dalam dedikasi terhadap ilmu pengetahuan. Proyek-proyek 
+                        penelitian yang kami kerjakan memberikan pemahaman mendalam tentang kompleksitas hubungan antara 
+                        politik dan ekonomi. Setiap hari adalah pembelajaran baru yang sangat berharga.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Story 3 -->
+            <div class="story-card scroll-reveal">
+                <div class="story-image floating">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Hanifah Nur Aini">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-author">Hanifah Nur Aini</h3>
+                    <p class="story-role">Research Assistant</p>
+                    <p class="story-text">
+                        Pengalaman riset bersama Dr. Alfa Farah mengajarkan saya bahwa penelitian bukan hanya tentang 
+                        mengumpulkan data, tetapi tentang memahami cerita di balik angka-angka tersebut. Setiap analisis 
+                        institusi demokratis yang kami lakukan membuka mata saya tentang pentingnya governance yang baik. 
+                        Lingkungan kerja yang supportive membuat saya tumbuh sebagai peneliti muda yang percaya diri.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Story 4 -->
+            <div class="story-card reverse scroll-reveal">
+                <div class="story-image floating">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Muhammad Razhky Ramadhan Tuasyikal">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-author">Muhammad Razhky Ramadhan Tuasyikal</h3>
+                    <p class="story-role">Research Assistant</p>
+                    <p class="story-text">
+                        Kolaborasi dalam tim penelitian ini telah memperluas horizon intelektual saya secara signifikan. 
+                        Dr. Alfa Farah selalu mendorong kami untuk berpikir kritis dan mengajukan pertanyaan-pertanyaan 
+                        yang menantang. Metodologi penelitian yang ketat yang diajarkan di sini menjadi bekal berharga 
+                        untuk karir akademis saya di masa depan. Terima kasih atas kesempatan luar biasa ini.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Story 5 -->
+            <div class="story-card scroll-reveal">
+                <div class="story-image floating">
+                    <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Putri Mei Hapsari">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-author">Putri Mei Hapsari</h3>
+                    <p class="story-role">Research Assistant</p>
+                    <p class="story-text">
+                        Bergabung dengan PEI Research Group adalah turning point dalam perjalanan akademis saya. 
+                        Bimbingan Dr. Alfa Farah dalam menganalisis kebijakan desentralisasi memberikan pemahaman yang 
+                        sangat aplikatif tentang bagaimana teori ekonomi politik bekerja di dunia nyata. Pengalaman ini 
+                        tidak hanya memperkaya CV, tetapi juga membentuk cara pandang saya terhadap pembangunan ekonomi.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Story 6 -->
+            <div class="story-card reverse scroll-reveal">
+                <div class="story-image floating">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Alif Jian Permana Putra">
+                </div>
+                <div class="story-content">
+                    <h3 class="story-author">Alif Jian Permana Putra</h3>
+                    <p class="story-role">Research Assistant</p>
+                    <p class="story-text">
+                        Menjadi research assistant di bawah supervisi Dr. Alfa Farah adalah pengalaman yang 
+                        transformatif. Setiap proyek penelitian mengajarkan saya pentingnya precision dalam analisis 
+                        dan keberanian dalam mengambil kesimpulan. Diskusi-diskusi mendalam tentang institutional 
+                        economics membuka perspektif baru tentang bagaimana institusi membentuk perilaku ekonomi. 
+                        Grateful untuk semua pembelajaran ini.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add parallax effect to story images
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.story-image');
+            
+            parallaxElements.forEach((element, index) => {
+                const rate = scrolled * -0.5;
+                element.style.transform = `translateY(${rate * 0.1}px)`;
+            });
+        });
+
+        // Add hover effects to story cards
+        document.querySelectorAll('.story-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.boxShadow = 'var(--shadow-heavy)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Staggered animation for story cards
+        const storyCards = document.querySelectorAll('.story-card');
+        storyCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        console.log('📚 Stories from Assistants page loaded successfully!');
+    </script>
+</body>
+</html>

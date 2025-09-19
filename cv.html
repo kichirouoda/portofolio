@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Alfa Farah - Curriculum Vitae</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a87;
+            --accent-color: #4a90b8;
+            --gold-accent: #d4af37;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --bg-tertiary: #edf2f7;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #ffffff 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(74, 144, 184, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(74, 144, 184, 0.15);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 1px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 60px 0;
+        }
+
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-medium);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* CV Container */
+        .cv-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        /* CV Header */
+        .cv-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .cv-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .cv-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .cv-meta {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .cv-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .cv-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-accent), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* CV Items */
+        .cv-item {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(237, 242, 247, 0.7);
+        }
+
+        .cv-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .cv-item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .cv-item-subtitle {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .cv-item-date {
+            background: rgba(74, 144, 184, 0.1);
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .cv-item-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-top: 10px;
+        }
+
+        .cv-item-description ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .cv-item-description li {
+            margin-bottom: 5px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .skill-category h4 {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(74, 144, 184, 0.1);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Publications */
+        .publication-item {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold-accent);
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .publication-authors {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .publication-journal {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* Print Styles for PDF */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12px !important;
+                line-height: 1.4 !important;
+            }
+
+            .navbar, .download-section, .background-pattern {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-top: 0 !important;
+                padding: 0 !important;
+            }
+
+            .cv-container {
+                background: white !important;
+                box-shadow: none !important;
+                border: none !important;
+                backdrop-filter: none !important;
+                padding: 20px !important;
+            }
+
+            .cv-section {
+                page-break-inside: avoid;
+                margin-bottom: 20px !important;
+                padding-bottom: 15px !important;
+            }
+
+            .section-title {
+                font-size: 16px !important;
+                margin-bottom: 15px !important;
+            }
+
+            .cv-item-title {
+                font-size: 14px !important;
+            }
+
+            .cv-item {
+                margin-bottom: 15px !important;
+                padding-bottom: 15px !important;
+            }
+
+            .cv-header h1 {
+                font-size: 24px !important;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cv-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .cv-container {
+                padding: 30px 20px;
+            }
+
+            .cv-item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">Dr. Alfa Farah</a>
+             <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cv.html" class="active">CV</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="supervision.html">Supervision</a></li>
+                <li><a href="pei.html">PEI</a></li>
+                <li><a href="feedback.html">Stories From Assistants</a></li> 
+                <li><a href="participant.html">Peserta Eksperimen</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <main class="main-content">
+            <!-- Download Section -->
+            <div class="download-section fade-in">
+                <button class="download-btn" onclick="downloadPDF()">
+                    📄 Download PDF
+                </button>
+                <p class="last-updated">Last updated: September 2025</p>
+            </div>
+
+            <!-- CV Content - THIS IS WHAT GETS CONVERTED TO PDF -->
+            <div id="cv-content" class="cv-container fade-in">
+                <!-- CV Header -->
+                <div class="cv-header">
+                    <h1>Dr. Alfa Farah</h1>
+                    <p class="cv-subtitle">Assistant Professor of Economics</p>
+                    <div class="cv-meta">
+                        Diponegoro University, Indonesia<br>
+                        Email: alfafarah@live.undip.ac.id<br>
+                        Address: Jl. Prof. Moeljono Trastotenojo, Tembalang Semarang, 50275, Indonesia
+                    </div>
+                </div>
+
+                <!-- Personal Information -->
+                <section class="cv-section">
+                    <h2 class="section-title">Personal Information</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-description">
+                            <p><strong>Full Name:</strong> Dr. Alfa Farah</p>
+                            <p><strong>Position:</strong> Assistant Professor</p>
+                            <p><strong>Department:</strong> Economics, Faculty of Economics and Business</p>
+                            <p><strong>Institution:</strong> Diponegoro University</p>
+                            <p><strong>Email:</strong> alfafarah@live.undip.ac.id</p>
+                            <p><strong>Phone:</strong> +62 24 7460034</p>
+                            <p><strong>Address:</strong> Jl. Prof. Moeljono Trastotenojo, Tembalang Semarang, 50275, Indonesia</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section class="cv-section">
+                    <h2 class="section-title">Education</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">PhD in Economics</div>
+                                <div class="cv-item-subtitle">University of Muenster, Germany</div>
+                            </div>
+                            <div class="cv-item-date">2019</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <p><strong>Dissertation:</strong> "Political Economy of Decentralization: Evidence from Indonesia"</p>
+                            <p><strong>Supervisor:</strong> Prof. Dr. [Supervisor Name]</p>
+                            <p><strong>Grade:</strong> Magna Cum Laude</p>
+                        </div>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">Master of Economics</div>
+                                <div class="cv-item-subtitle">Diponegoro University, Indonesia</div>
+                            </div>
+                            <div class="cv-item-date">2014</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <p><strong>Thesis:</strong> "Economic Development and Regional Autonomy"</p>
+                            <p><strong>GPA:</strong> 3.85/4.00</p>
+                        </div>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">Bachelor of Economics</div>
+                                <div class="cv-item-subtitle">Diponegoro University, Indonesia</div>
+                            </div>
+                            <div class="cv-item-date">2012</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <p><strong>Major:</strong> Development Economics</p>
+                            <p><strong>Grade:</strong> Summa Cum Laude, GPA: 3.92/4.00</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Experience -->
+                <section class="cv-section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">Assistant Professor</div>
+                                <div class="cv-item-subtitle">Department of Economics, Diponegoro University</div>
+                            </div>
+                            <div class="cv-item-date">2019 - Present</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <ul>
+                                <li>Teaching undergraduate and graduate courses in Political Economics and Development Economics</li>
+                                <li>Conducting research on decentralization and economic development</li>
+                                <li>Supervising undergraduate and graduate student research projects</li>
+                                <li>Serving on departmental and faculty committees</li>
+                                <li>Participating in academic conferences and workshops</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">Research Assistant</div>
+                                <div class="cv-item-subtitle">University of Muenster, Germany</div>
+                            </div>
+                            <div class="cv-item-date">2015 - 2019</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <ul>
+                                <li>Assisted in research projects on political economy and institutional economics</li>
+                                <li>Data collection and analysis for various research publications</li>
+                                <li>Teaching assistance for undergraduate economics courses</li>
+                                <li>Literature review and research methodology development</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">Lecturer</div>
+                                <div class="cv-item-subtitle">Department of Economics, Diponegoro University</div>
+                            </div>
+                            <div class="cv-item-date">2012 - 2015</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <ul>
+                                <li>Taught introductory economics and development economics courses</li>
+                                <li>Participated in curriculum development initiatives</li>
+                                <li>Mentored undergraduate students in research projects</li>
+                                <li>Organized academic seminars and workshops</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Research Interests -->
+                <section class="cv-section">
+                    <h2 class="section-title">Research Interests</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-description">
+                            <ul>
+                                <li><strong>Political Economics:</strong> Decentralization, governance, and political institutions</li>
+                                <li><strong>Economic Development:</strong> Regional development, institutional economics</li>
+                                <li><strong>Public Economics:</strong> Fiscal decentralization, public policy analysis</li>
+                                <li><strong>Applied Econometrics:</strong> Causal inference, panel data analysis</li>
+                                <li><strong>Development Policy:</strong> Local government performance, public service delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Publications -->
+                <section class="cv-section">
+                    <h2 class="section-title">Publications</h2>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">
+                            "The Political Economy of Decentralization: Evidence from Indonesian Local Elections"
+                        </div>
+                        <div class="publication-authors">Alfa Farah</div>
+                        <div class="publication-journal">Journal of Development Economics, Vol. 162, 2023</div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-title">
+                            "Fiscal Decentralization and Economic Growth: A Panel Data Analysis of Indonesian Regions"
+                        </div>
+                        <div class="publication-authors">Alfa Farah, Co-Author Name</div>
+                        <div class="publication-journal">Economic Development Quarterly, Vol. 36(4), 2022</div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-title">
+                            "Institutional Quality and Regional Development in Developing Countries"
+                        </div>
+                        <div class="publication-authors">Alfa Farah</div>
+                        <div class="publication-journal">World Development, Vol. 148, 2021</div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-title">
+                            "Local Government Performance and Public Service Delivery in Indonesia"
+                        </div>
+                        <div class="publication-authors">Alfa Farah, et al.</div>
+                        <div class="publication-journal">Public Administration and Development, Vol. 41(2), 2021</div>
+                    </div>
+                </section>
+
+                <!-- Skills -->
+                <section class="cv-section">
+                    <h2 class="section-title">Skills & Competencies</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Statistical Software</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Stata</span>
+                                <span class="skill-tag">R</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SPSS</span>
+                                <span class="skill-tag">EViews</span>
+                                <span class="skill-tag">Matlab</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Research Methods</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Econometrics</span>
+                                <span class="skill-tag">Panel Data</span>
+                                <span class="skill-tag">Causal Inference</span>
+                                <span class="skill-tag">Survey Design</span>
+                                <span class="skill-tag">Field Experiments</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h4>Languages</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Indonesian (Native)</span>
+                                <span class="skill-tag">English (Fluent)</span>
+                                <span class="skill-tag">German (Intermediate)</span>
+                                <span class="skill-tag">Javanese (Native)</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h4>Technical Skills</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">LaTeX</span>
+                                <span class="skill-tag">Microsoft Office</span>
+                                <span class="skill-tag">Data Visualization</span>
+                                <span class="skill-tag">GIS</span>
+                                <span class="skill-tag">Web Scraping</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Awards & Honors -->
+                <section class="cv-section">
+                    <h2 class="section-title">Awards & Honors</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">DAAD Scholarship</div>
+                                <div class="cv-item-subtitle">German Academic Exchange Service</div>
+                            </div>
+                            <div class="cv-item-date">2015-2019</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <p>Full scholarship for PhD studies in Germany, including tuition, living allowance, and research funding</p>
+                        </div>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">Best Graduate Award</div>
+                                <div class="cv-item-subtitle">Faculty of Economics and Business, Diponegoro University</div>
+                            </div>
+                            <div class="cv-item-date">2012</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <p>Awarded for highest GPA in the graduating class of Economics Department</p>
+                        </div>
+                    </div>
+
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <div>
+                                <div class="cv-item-title">Research Excellence Award</div>
+                                <div class="cv-item-subtitle">Indonesian Economic Association</div>
+                            </div>
+                            <div class="cv-item-date">2021</div>
+                        </div>
+                        <div class="cv-item-description">
+                            <p>Recognition for outstanding contribution to economic research in Indonesia</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Professional Memberships -->
+                <section class="cv-section">
+                    <h2 class="section-title">Professional Memberships</h2>
+                    <div class="cv-item">
+                        <div class="cv-item-description">
+                            <ul>
+                                <li>Indonesian Economic Association (ISEI)</li>
+                                <li>European Economic Association (EEA)</li>
+                                <li>Royal Economic Society (RES)</li>
+                                <li>Association of Development Economics (ADE)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // PDF Download Function - WORKING VERSION
+        function downloadPDF() {
+            // Check if html2pdf is loaded
+            if (typeof html2pdf === 'undefined') {
+                console.log('html2pdf not loaded, using print fallback');
+                downloadPDFAlternative();
+                return;
+            }
+
+            const element = document.getElementById('cv-content');
+            const btn = document.querySelector('.download-btn');
+            
+            if (!element) {
+                alert('CV content not found. Please refresh the page.');
+                return;
+            }
+
+            // Show loading state
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳ Generating PDF...';
+            btn.disabled = true;
+
+            // PDF options - optimized for better output
+            const opt = {
+                margin: [0.5, 0.5, 0.5, 0.5],
+                filename: 'Dr_Alfa_Farah_CV.pdf',
+                image: { 
+                    type: 'jpeg', 
+                    quality: 0.98 
+                },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    allowTaint: false,
+                    backgroundColor: '#ffffff',
+                    width: element.scrollWidth,
+                    height: element.scrollHeight
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    putOnlyUsedFonts: true,
+                    floatPrecision: 16
+                },
+                pagebreak: { 
+                    mode: ['avoid-all', 'css', 'legacy'] 
+                }
+            };
+
+            // Generate PDF
+            html2pdf()
+                .set(opt)
+                .from(element)
+                .save()
+                .then(() => {
+                    // Success - reset button
+                    btn.innerHTML = '✅ Downloaded Successfully!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 2000);
+                })
+                .catch((error) => {
+                    console.error('PDF generation failed:', error);
+                    btn.innerHTML = '❌ Failed - Try Print Instead';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                    }, 3000);
+                    
+                    // Automatically try print fallback after error
+                    setTimeout(() => {
+                        downloadPDFAlternative();
+                    }, 1000);
+                });
+            }
+
+            // Alternative PDF download using window.print() as fallback
+            function downloadPDFAlternative() {
+                // Create a new window for printing
+                const printWindow = window.open('', '_blank');
+                const element = document.getElementById('cv-content');
+                
+                if (!element) {
+                    alert('CV content not found. Please refresh the page.');
+                    return;
+                }
+
+                // Get the CV content HTML
+                const cvHTML = element.innerHTML;
+                
+                // Create print-friendly HTML
+                const printHTML = `
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Dr. Alfa Farah - CV</title>
+                        <meta charset="UTF-8">
+                        <style>
+                            * {
+                                margin: 0;
+                                padding: 0;
+                                box-sizing: border-box;
+                            }
+                            
+                            body {
+                                font-family: 'Times New Roman', serif;
+                                font-size: 12px;
+                                line-height: 1.4;
+                                color: #000;
+                                background: white;
+                                padding: 20px;
+                                max-width: 210mm;
+                                margin: 0 auto;
+                            }
+                            
+                            .cv-header {
+                                text-align: center;
+                                margin-bottom: 30px;
+                                padding-bottom: 20px;
+                                border-bottom: 2px solid #1a365d;
+                            }
+                            
+                            .cv-header h1 {
+                                font-size: 24px;
+                                font-weight: bold;
+                                color: #1a365d;
+                                margin-bottom: 8px;
+                            }
+                            
+                            .cv-subtitle {
+                                font-size: 16px;
+                                color: #4a90b8;
+                                font-weight: bold;
+                                margin-bottom: 15px;
+                            }
+                            
+                            .cv-meta {
+                                font-size: 11px;
+                                color: #333;
+                            }
+                            
+                            .cv-section {
+                                margin-bottom: 25px;
+                                page-break-inside: avoid;
+                            }
+                            
+                            .section-title {
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #1a365d;
+                                margin-bottom: 15px;
+                                padding-bottom: 5px;
+                                border-bottom: 1px solid #1a365d;
+                            }
+                            
+                            .cv-item {
+                                margin-bottom: 15px;
+                                padding-bottom: 10px;
+                            }
+                            
+                            .cv-item-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: flex-start;
+                                margin-bottom: 8px;
+                            }
+                            
+                            .cv-item-title {
+                                font-size: 13px;
+                                font-weight: bold;
+                                color: #1a365d;
+                                margin-bottom: 3px;
+                            }
+                            
+                            .cv-item-subtitle {
+                                font-size: 12px;
+                                color: #4a90b8;
+                                font-weight: bold;
+                            }
+                            
+                            .cv-item-date {
+                                background: #f0f0f0;
+                                color: #1a365d;
+                                padding: 2px 8px;
+                                border-radius: 10px;
+                                font-size: 10px;
+                                font-weight: bold;
+                                white-space: nowrap;
+                            }
+                            
+                            .cv-item-description {
+                                color: #333;
+                                font-size: 11px;
+                                line-height: 1.4;
+                            }
+                            
+                            .cv-item-description ul {
+                                margin-left: 15px;
+                                margin-top: 5px;
+                            }
+                            
+                            .cv-item-description li {
+                                margin-bottom: 3px;
+                            }
+                            
+                            .skills-grid {
+                                display: grid;
+                                grid-template-columns: repeat(2, 1fr);
+                                gap: 15px;
+                            }
+                            
+                            .skill-category {
+                                background: #f8f9fa;
+                                padding: 12px;
+                                border-radius: 5px;
+                                border-left: 3px solid #4a90b8;
+                            }
+                            
+                            .skill-category h4 {
+                                font-size: 12px;
+                                font-weight: bold;
+                                color: #1a365d;
+                                margin-bottom: 8px;
+                            }
+                            
+                            .skill-tags {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 4px;
+                            }
+                            
+                            .skill-tag {
+                                background: #e6f3ff;
+                                color: #1a365d;
+                                padding: 2px 6px;
+                                border-radius: 8px;
+                                font-size: 9px;
+                                font-weight: bold;
+                            }
+                            
+                            .publication-item {
+                                background: #f8f9fa;
+                                padding: 12px;
+                                border-radius: 5px;
+                                margin-bottom: 10px;
+                                border-left: 3px solid #d4af37;
+                            }
+                            
+                            .publication-title {
+                                font-weight: bold;
+                                color: #1a365d;
+                                margin-bottom: 5px;
+                                font-size: 11px;
+                            }
+                            
+                            .publication-authors {
+                                color: #666;
+                                font-style: italic;
+                                margin-bottom: 3px;
+                                font-size: 10px;
+                            }
+                            
+                            .publication-journal {
+                                color: #4a90b8;
+                                font-weight: bold;
+                                font-size: 10px;
+                            }
+                            
+                            @media print {
+                                body {
+                                    padding: 0;
+                                }
+                                
+                                .cv-section {
+                                    page-break-inside: avoid;
+                                }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        ${cvHTML}
+                    </body>
+                    </html>
+                `;
+                
+                // Write content to print window
+                printWindow.document.write(printHTML);
+                printWindow.document.close();
+                
+                // Wait for content to load then print
+                printWindow.onload = function() {
+                    setTimeout(() => {
+                        printWindow.print();
+                        printWindow.close();
+                    }, 500);
+                };
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+
+            // Initialize page
+            document.addEventListener('DOMContentLoaded', function() {
+                // Check if html2pdf is loaded after a delay
+                setTimeout(() => {
+                    if (typeof html2pdf === 'undefined') {
+                        console.warn('html2pdf library failed to load. Using print fallback.');
+                        const downloadBtn = document.querySelector('.download-btn');
+                        if (downloadBtn) {
+                            // Update button text to indicate print functionality
+                            downloadBtn.innerHTML = '🖨️ Print/Save as PDF';
+                            downloadBtn.onclick = downloadPDFAlternative;
+                        }
+                    }
+                }, 3000);
+                
+                // Add fade-in animation to elements
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                // Observe CV sections for animation
+                document.querySelectorAll('.cv-section').forEach(section => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(section);
+                });
+            });
+
+            // Add keyboard shortcut for PDF download
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+P or Cmd+P for PDF download
+                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                    e.preventDefault();
+                    downloadPDF();
+                }
+            });
+
+            // Handle print events
+            window.addEventListener('beforeprint', () => {
+                document.body.classList.add('printing');
+            });
+
+            window.addEventListener('afterprint', () => {
+                document.body.classList.remove('printing');
+            });
+
+            // Add loading indicator for slow connections
+            window.addEventListener('load', () => {
+                // Hide any loading indicators
+                document.querySelectorAll('.loading').forEach(el => {
+                    el.style.display = 'none';
+                });
+            });
+        </script>
+    </body>
+</html>
