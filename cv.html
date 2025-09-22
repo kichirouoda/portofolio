@@ -6,6 +6,11 @@
     <title>Dr. Alfa Farah - Curriculum Vitae</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Include Navbar CSS -->
+    <link rel="stylesheet" href="navbar.css">
+
+
     <style>
         :root {
             --primary-color: #1a365d;
@@ -61,78 +66,6 @@
             padding: 0 20px;
         }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-            background: rgba(74, 144, 184, 0.1);
-        }
-
-        .nav-links a.active {
-            color: var(--primary-color);
-            background: rgba(74, 144, 184, 0.15);
-            font-weight: 600;
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 2px;
-            background: var(--accent-color);
-            border-radius: 1px;
-        }
-        
         /* Main Content */
         .main-content {
             margin-top: 80px;
@@ -175,7 +108,7 @@
 
         .last-updated {
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: white;
         }
 
         /* CV Container */
@@ -429,6 +362,10 @@
                 display: none;
             }
 
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
             .cv-header h1 {
                 font-size: 2.2rem;
             }
@@ -445,6 +382,28 @@
 
             .skills-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 40px 0;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cv-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cv-container {
+                padding: 20px 15px;
             }
         }
 
@@ -463,27 +422,18 @@
                 transform: translateY(0);
             }
         }
+
+        /* Prevent body scroll when mobile menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
     <div class="background-pattern"></div>
     
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="#" class="logo">Dr. Alfa Farah</a>
-             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="cv.html" class="active">CV</a></li>
-                <li><a href="teaching.html">Teaching</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="supervision.html">Supervision</a></li>
-                <li><a href="pei.html">PEI</a></li>
-                <li><a href="feedback.html">Stories From Assistants</a></li> 
-                <li><a href="participant.html">Peserta Eksperimen</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Include Navbar -->
+    <div id="navbar-container"></div>
 
     <!-- Main Content -->
     <div class="container">
@@ -798,7 +748,13 @@
         </main>
     </div>
 
+    <!-- Include Navbar JavaScript -->
+    <script src="navbar.js"></script>
+
     <script>
+        // Load navbar
+        loadNavbar();
+
         // PDF Download Function - WORKING VERSION
         function downloadPDF() {
             // Check if html2pdf is loaded

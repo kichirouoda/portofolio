@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Alfa Farah - Economics Professor</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Include Navbar CSS -->
+    <link rel="stylesheet" href="navbar.css">
+    
     <style>
         :root {
             --primary-color: #1a365d;
@@ -58,165 +62,6 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-decoration: none;
-            z-index: 1001;
-            position: relative;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            transition: var(--transition);
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-            background: rgba(74, 144, 184, 0.1);
-        }
-
-        .nav-links a.active {
-            color: var(--primary-color);
-            background: rgba(74, 144, 184, 0.15);
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 2px;
-            background: var(--accent-color);
-            border-radius: 1px;
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: var(--transition);
-            z-index: 1001;
-            position: relative;
-        }
-
-        .mobile-menu-toggle:hover {
-            background: rgba(74, 144, 184, 0.1);
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 3px 0;
-            transition: var(--transition);
-            border-radius: 2px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px) saturate(180%);
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .mobile-menu-overlay.active {
-            transform: translateX(0);
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            text-align: center;
-        }
-
-        .mobile-nav-links li {
-            margin: 1.5rem 0;
-        }
-
-        .mobile-nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.2rem;
-            padding: 12px 24px;
-            border-radius: 12px;
-            transition: var(--transition);
-            display: block;
-        }
-
-        .mobile-nav-links a:hover,
-        .mobile-nav-links a.active {
-            color: var(--primary-color);
-            background: rgba(74, 144, 184, 0.1);
         }
 
         /* Main Content */
@@ -526,14 +371,6 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
             .hero-title {
                 font-size: 2.5rem;
             }
@@ -611,55 +448,13 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Prevent body scroll when mobile menu is open */
-        body.menu-open {
-            overflow: hidden;
-        }
     </style>
 </head>
 <body>
     <div class="background-pattern"></div>
     
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="#" class="logo">Dr. Alfa Farah</a>
-            
-            <!-- Desktop Navigation -->
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="cv.html">CV</a></li>
-                <li><a href="teaching.html">Teaching</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="supervision.html">Supervision</a></li>
-                <li><a href="pei.html">PEI</a></li>
-                <li><a href="feedback.html">Stories From Assistants</a></li> 
-                <li><a href="participant.html">Peserta Eksperimen</a></li>
-            </ul>
-
-            <!-- Mobile Menu Toggle -->
-            <div class="mobile-menu-toggle" id="mobileMenuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-        <ul class="mobile-nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="cv.html">CV</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="supervision.html">Supervision</a></li>
-            <li><a href="pei.html">PEI</a></li>
-            <li><a href="feedback.html">Stories From Assistants</a></li>
-            <li><a href="participant.html">Peserta Eksperimen</a></li>
-        </ul>
-    </div>
+    <!-- Include Navbar -->
+    <div id="navbar-container"></div>
 
     <!-- Main Content -->
     <div class="container">
@@ -691,177 +486,135 @@
             </section>
 
             <!-- Content Grid -->
-            <div class="content-grid">
-                <div class="main-sections">
-                    <!-- About Section -->
-                    <section class="content-section scroll-reveal">
-                        <h2 class="section-title">About Me</h2>
-                        <div class="section-content">
-                            <p>
-                                I am currently an Assistant Professor in the Department of Economics at <strong>Diponegoro University, Indonesia</strong>. My academic journey led me to complete my PhD in Economics at the prestigious <strong>University of Muenster, Germany</strong> in 2019.
-                            </p>
-                            <p>
-                                My research interests lie at the intersection of <span class="highlight">Political Economics</span> and <span class="highlight">Economic Development</span>, where I explore how institutional changes shape economic outcomes and political behavior.
-                            </p>
-                        </div>
-                    </section>
-
-                    <!-- Research Section -->
-                    <section class="content-section scroll-reveal">
-                        <h2 class="section-title">Research Focus</h2>
-                        <div class="section-content">
-                            <p>
-                                My recent work explores the <strong>political economy of decentralization</strong>, investigating how the adoption of decentralization policies fundamentally rearranges the incentive structures faced by political agents.
-                            </p>
-                            <p>
-                                I am particularly interested in understanding how these institutional changes determine both political and economic outcomes, contributing to our broader understanding of governance and development processes.
-                            </p>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- Sidebar -->
-                <div class="sidebar">
-                    <!-- Contact Card -->
-                    <div class="contact-card fade-in-delay">
-                        <h3 class="contact-title">Get In Touch</h3>
-                        <ul class="contact-info">
-                            <li>
-                                <div class="contact-icon">📧</div>
-                                <div>
-                                    <a href="mailto:alfafarah@live.undip.ac.id" class="email-link">
-                                        alfafarah@live.undip.ac.id
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="contact-icon">🏛️</div>
-                                <div>
-                                    <strong>Universitas Diponegoro</strong><br>
-                                    Fakultas Ekonomika dan Bisnis
-                                </div>
-                            </li>
-                            <li>
-                                <div class="contact-icon">📍</div>
-                                <div>
-                                    Jl. Prof. Moeljono Trastotenojo<br>
-                                    Tembalang Semarang, 50275<br>
-                                    Indonesia
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Stats Card -->
-                    <div class="stats-card scroll-reveal">
-                        <h3 class="stats-title">Academic Profile</h3>
-                        <div class="stat-item">
-                            <span class="stat-label">Position</span>
-                            <span class="stat-value">Assistant Professor</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Department</span>
-                            <span class="stat-value">Economics</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">PhD Year</span>
-                            <span class="stat-value">2019</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Specialization</span>
-                            <span class="stat-value">Political Economics</span>
-                        </div>
-                    </div>
-                </div>
+<div class="content-grid">
+    <div class="main-sections">
+        <!-- About Section -->
+        <section class="content-section scroll-reveal">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-content">
+                <p>
+                    I am currently an Assistant Professor in the Department of Economics at <strong>Diponegoro University, Indonesia</strong>. My academic journey led me to complete my PhD in Economics at the prestigious <strong>University of Muenster, Germany</strong> in 2019.
+                </p>
+                <p>
+                    My research interests lie at the intersection of <span class="highlight">Political Economics</span> and <span class="highlight">Economic Development</span>, where I explore how institutional changes shape economic outcomes and political behavior.
+                </p>
             </div>
-        </main>
+        </section>
+
+        <!-- Research Section -->
+        <section class="content-section scroll-reveal">
+            <h2 class="section-title">Research Focus</h2>
+            <div class="section-content">
+                <p>
+                    My recent work explores the <strong>political economy of decentralization</strong>, investigating how the adoption of decentralization policies fundamentally rearranges the incentive structures faced by political agents.
+                </p>
+                <p>
+                    I am particularly interested in understanding how these institutional changes determine both political and economic outcomes, contributing to our broader understanding of governance and development processes.
+                </p>
+            </div>
+        </section>
     </div>
 
-    <script>
-        // Mobile Menu Toggle Functionality
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const body = document.body;
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Contact Card -->
+        <div class="contact-card fade-in-delay">
+            <h3 class="contact-title">Get In Touch</h3>
+            <ul class="contact-info">
+                <li>
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <a href="mailto:alfafarah@live.undip.ac.id" class="email-link">
+                            alfafarah@live.undip.ac.id
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact-icon">🏛️</div>
+                    <div>
+                        <strong>Universitas Diponegoro</strong><br>
+                        Fakultas Ekonomika dan Bisnis
+                    </div>
+                </li>
+                <li>
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        Jl. Prof. Moeljono Trastotenojo<br>
+                        Tembalang Semarang, 50275<br>
+                        Indonesia
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-        mobileMenuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            mobileMenuOverlay.classList.toggle('active');
-            body.classList.toggle('menu-open');
-        });
+        <!-- Stats Card -->
+        <div class="stats-card scroll-reveal">
+            <h3 class="stats-title">Academic Profile</h3>
+            <div class="stat-item">
+                <span class="stat-label">Position</span>
+                <span class="stat-value">Assistant Professor</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Department</span>
+                <span class="stat-value">Economics</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">PhD Year</span>
+                <span class="stat-value">2019</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Specialization</span>
+                <span class="stat-value">Political Economics</span>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</div>
 
-        // Close mobile menu when clicking on a link
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenuToggle.classList.remove('active');
-                mobileMenuOverlay.classList.remove('active');
-                body.classList.remove('menu-open');
-            });
-        });
+<!-- Include Navbar JavaScript -->
+<script src="navbar.js"></script>
 
-        // Close mobile menu when clicking outside
-        mobileMenuOverlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                mobileMenuToggle.classList.remove('active');
-                this.classList.remove('active');
-                body.classList.remove('menu-open');
+<script>
+    // Load navbar
+    loadNavbar();
+
+    // Smooth scrolling for navigation links
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('a[href^="#"]')) {
+            e.preventDefault();
+            const target = document.querySelector(e.target.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    });
+
+    // Scroll reveal animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
             }
         });
+    }, observerOptions);
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                mobileMenuToggle.classList.remove('active');
-                mobileMenuOverlay.classList.remove('active');
-                body.classList.remove('menu-open');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll reveal animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, observerOptions);
-
+    // Observe elements after navbar is loaded
+    setTimeout(() => {
         document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
         });
+    }, 100);
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
-        });
-
-        console.log('🏠 Homepage loaded with responsive navigation!');
-    </script>
+    console.log('🏠 Homepage loaded with separated navbar component!');
+</script>
 </body>
 </html>
